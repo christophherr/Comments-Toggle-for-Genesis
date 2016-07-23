@@ -46,3 +46,5 @@ Go to your Plugins screen and activate the plugin.
 ## Credits
 
 Built by [Christoph Herr](https://wwww.christophherr.com/)
+
+Inspired by [Anita Carter](http://cre8tivediva.com/), [Chinmoy Paul](http://genesisdeveloper.me) and [Robin Cornett](https://robincornett.com/)
