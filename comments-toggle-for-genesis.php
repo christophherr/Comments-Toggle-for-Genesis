@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	wp_die( _e( 'Sorry, you are not allowed to access this page directly.', 'ctfg' , 'comments-toggle-for-genesis') );
 }
 
-$ctfg_version = "0.5.0";
+$ctfg_version = '0.5.0';
 
 /**
  * This function runs on plugin activation. It checks to make sure the
@@ -102,10 +102,9 @@ add_action( 'plugins_loaded', 'ctfg_load_textdomain' );
  * @since   0.5.0
  */
 function ctfg_admin_enqueue_scripts() {
-  global $ctfg_version;
+	global $ctfg_version;
 
-	wp_register_script( 'ctfg-js', plugins_url( 'js/ctfg.js', __FILE__ ), array( 'jquery' ), $ctfg_version );
-	wp_enqueue_script( 'ctfg-js' );
+	wp_enqueue_script( 'ctfg-js', plugins_url( 'js/ctfg.js', __FILE__ ), array( 'jquery' ), $ctfg_version );
 	wp_enqueue_style( 'ctfg-css', plugins_url( 'css/ctfg.css', __FILE__ ), array(), $ctfg_version, 'all' );
 }
 
@@ -114,10 +113,14 @@ add_action( 'wp_enqueue_scripts', 'ctfg_admin_enqueue_scripts' );
 /**
  * Add aria-expanded attribute to entry-comments
  *
+ * @param array $attributes Extra attributes to merge with defaults.
+ * @return string Amended HTML attributes and values.
+ *
  * @since 0.5.0
  */
 function ctfg_add_aria_expanded( $attributes ) {
 	$attributes['aria-expanded'] = 'false';
+
 	return $attributes;
 }
 
@@ -129,10 +132,10 @@ add_filter( 'genesis_attr_entry-comments', 'ctfg_add_aria_expanded' );
  * @since   0.5.0
  */
 function ctfg_add_button_before_comments() {
-	if ( ! is_single() )
-	return;
-
+	if ( ! is_single() ) {
+		return;
+	}
 	echo '<button id="show-comments" class="show-comments" aria-pressed="false" role="button" tabindex="0">Show Comments</button>';
 }
 
-add_action('genesis_before_comments', 'ctfg_add_button_before_comments');
+add_action( 'genesis_before_comments', 'ctfg_add_button_before_comments' );
