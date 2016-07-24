@@ -112,6 +112,18 @@ function ctfg_admin_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'ctfg_admin_enqueue_scripts' );
 
 /**
+ * Add aria-expanded attribute to entry-comments
+ *
+ * @since 0.5.0
+ */
+function ctfg_add_aria_expanded( $attributes ) {
+	$attributes['aria-expanded'] = 'false';
+	return $attributes;
+}
+
+add_filter( 'genesis_attr_entry-comments', 'ctfg_add_aria_expanded' );
+
+/**
  * Add a Show comments button.
  *
  * @since   0.5.0
@@ -120,7 +132,7 @@ function ctfg_add_button_before_comments() {
 	if ( ! is_single() )
 	return;
 
-	echo '<button id="show-comments" class="show-comments">Show Comments</button>';
+	echo '<button id="show-comments" class="show-comments" aria-pressed="false" role="button" tabindex="0">Show Comments</button>';
 }
 
 add_action('genesis_before_comments', 'ctfg_add_button_before_comments');
