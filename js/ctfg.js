@@ -12,4 +12,7 @@ jQuery(function( $ ){
         });
       });
   });
+  $(".entry-comments-link").click(function() {
+      $(".show-comments").get(0).scrollIntoView();
+  });
 });
